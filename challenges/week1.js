@@ -18,18 +18,28 @@ function addVAT(originalPrice, vatRate) {
   if (originalPrice === undefined) throw new Error("originalPrice is requied");
   if (vatRate === undefined) throw new Error("vatRate is required");
   // Add your code here!
-  const total = originalPrice * vatRate
-  return total
+  if (vatRate === 0) {
+    return originalPrice
+  } else {
+    const vatPrice = originalPrice / 100
+    const num = vatPrice * vatRate
+    const total = parseFloat((originalPrice + num).toFixed(2))
+    return total
+  }
 }
 
 function getSalePrice(originalPrice, reduction) {
   if (originalPrice === undefined) throw new Error("originalPrice is required");
   if (reduction === undefined) throw new Error("reduction is required");
   // Add your code here!
-  const salePrice = originalPrice / 100
-  const total = salePrice * 15
-  return total
-
+  if (reduction === 0) {
+    return originalPrice
+  } else {
+    const salePrice = originalPrice / 100
+    const num = salePrice * reduction
+    const total = parseFloat((originalPrice - num).toFixed(2))
+    return total
+  }
 }
 
 function getMiddleCharacter(str) {
